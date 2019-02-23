@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %} Job Detail  {% endblock %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p>{{ object.title }} ilanını silmek istediğinize emin misiniz?</p>
+    <input type="submit" class="btn btn-primary" value="Sil">
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} Job Detail  {% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="tth"><h3>{{job.title}}</h3></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" class="tth">Job description</th>
+      <td>: {{job.description}}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="tth">Number of people to hire</th>
+      <td>: {{job.count}}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="tth">Last application date</th>
+      <td>: {{job.expire}}</td>
+    </tr>
+  </tbody>
+</table>
+{% if user.is_authenticated %}
+  {% for a in applicants %}
+     <div class="card" style="width: 18rem;">
+       <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{a.name}}</li>
+        <li class="list-group-item"><a href='{% url "applydetail" a.pk %}' title="">Detail</a></li>
+      </ul>
+    </div>
+  {% endfor %}
+{% else %}
+  <a href="{% url 'apply' job.pk %}" class="btn btn-primary" role="button" aria-pressed="true">Apply</a>
+{% endif %}
+{% endblock %}

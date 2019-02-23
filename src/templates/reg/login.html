@@ -1,0 +1,45 @@
+{% load static %}
+<!doctype html>
+<html lang="tr">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+        <style>
+        </style>
+    </head>
+    <body>
+        <div class="bg-img">
+            <div class="container form-container">
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p>Buraya ulaşmaya yetkiniz yok.</p>
+                    {% else %}
+                        <p>Lütfen giriş yapınız.</p>
+                    {% endif %}
+                {% endif %}
+                <form method="post" action="{% url 'login' %}" class="login-form">
+                    {% csrf_token %}
+                    <h1>Giriş Yap</h1>
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    {% if form.errors %}
+                        <p class="error">Kullanıcı adı veya şifre hatalı.</p>
+                    {% endif %}
+                    <input type="submit" class="wide btn btn-primary" value="Giriş" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+                {# Assumes you setup the password_reset view in your URLconf #}
+                <p><a href="{% url 'password_reset' %}">Parolmaı unuttum...</a></p>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

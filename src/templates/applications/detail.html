@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %} Job Detail  {% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="tth"><h3>{{app.name}}</h3></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" class="tth">Email</th>
+      <td>: {{app.email}}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="tth">Phone number</th>
+      <td>: {{app.phone}}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="tth">Address</th>
+      <td>: {{app.address}}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="tth">Toughts on job</th>
+      <td>: {{app.thoughts}}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="tth">Resume</th>
+      <td>: <a href="/{{app.resume}}" title="">Download</a></td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

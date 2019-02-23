@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Add job  {% endblock %}
+
+{% block content %}
+        <form action="" method="POST" enctype="multipart/form-data">
+        	{% csrf_token %}
+            {% for f in form %}
+            	<div class="form-group">
+                    {{f.errors}}
+                    {{f.label_tag}}
+                    {{f}}
+                </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-primary" value="Kaydet">
+        </form>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $('.date').mask('00/00/0000');
+            $(".phone").mask("0000 000 00 00");
+        });
+    </script>
+{% endblock %}
